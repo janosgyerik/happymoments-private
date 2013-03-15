@@ -32,12 +32,9 @@ public class AddHappyMomentActivity extends Activity {
 		btnAddHappyMoment.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				TextView happyMomentView = (TextView) findViewById(R.id.happy_moment_text);
-				String happyMoment = happyMomentView.getText().toString().trim();
-				if (happyMoment.equals("")) {
-					finish();
-				}
-				else {
-					if (helper.addHappyMoment(happyMoment)) {
+				String happyMoment = capitalize(happyMomentView.getText().toString());
+				if (happyMoment != null) {
+					if (helper.addHappyMoment(happyMoment) != null) {
 						Toast.makeText(AddHappyMomentActivity.this, "Saved Happy Moment :)", Toast.LENGTH_SHORT).show();
 					} else {
 						Toast.makeText(AddHappyMomentActivity.this, "Could not save Happy Moment :(", Toast.LENGTH_SHORT).show();
@@ -47,6 +44,13 @@ public class AddHappyMomentActivity extends Activity {
 			}
 		});
 	}
+	
+	static String capitalize(String name) {
+		if (name == null || name.trim().length() < 1) return null;
+		name = name.trim();
+		return Character.toUpperCase(name.charAt(0)) + name.substring(1);
+	}
+
 
 	@Override  
 	protected void onDestroy() {

@@ -6,13 +6,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
+import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.BaseColumns;
 import android.util.Log;
 import android.util.SparseArray;
 
@@ -24,9 +24,7 @@ public class HappyMomentsSQLiteOpenHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "sqlite3.db";
 	private static final int DATABASE_VERSION = 1;
 
-	private static final String LEVELS_TABLE_NAME = "quiz_level";
-	private static final String QUESTIONS_TABLE_NAME = "quiz_question";
-	private static final String ANSWERS_TABLE_NAME = "quiz_answer";
+	private static final String HAPPYMOMENTS_TABLE_NAME = "happymoments_happymoment";
 
 	private List<String> sqlCreateStatements;
 	private SparseArray<List<String>> sqlUpgradeStatements;
@@ -93,36 +91,22 @@ public class HappyMomentsSQLiteOpenHelper extends SQLiteOpenHelper {
 		}
 	}
 
-	public Cursor getLevelListCursor() {
-		Log.d(TAG, "get all levels");
-		Cursor cursor = getReadableDatabase().query(LEVELS_TABLE_NAME,
-				new String[] { BaseColumns._ID, "name", "level", },
-				"is_active = 1", null, null, null, null);
-		return cursor;
-	}
+	public String addHappyMoment(String happyMoment) {
+		ContentValues values = new ContentValues();
+		values.put("text", happyMoment);
+		long createdDt = new Date().getTime();
+		values.put("created_dt", createdDt);
+		values.put("updated_dt", createdDt);
 
-	public Cursor getQuestionListCursor() {
-		Log.d(TAG, "get all questions");
-		Cursor cursor = getReadableDatabase().query(
-				QUESTIONS_TABLE_NAME,
-				new String[] { BaseColumns._ID, "text", "category", "hint",
-						"explanation", }, "is_active = 1", null, null, null,
-				null);
-		return cursor;
-	}
-
-	public Cursor getAnswerListCursor() {
-		Log.d(TAG, "get all answers");
-		Cursor cursor = getReadableDatabase().query(
-				ANSWERS_TABLE_NAME,
-				new String[] { BaseColumns._ID, "question_id", "text",
-						"is_correct", }, "is_active = 1", null, null, null,
-				null);
-		return cursor;
-	}
-
-	public boolean addHappyMoment(String note) {
-		return false;
+		long ret = getWritableDatabase().insert(
+				HAPPYMOMENTS_TABLE_NAME, null, values);
+		Log.d(TAG, "insert happy moment ret = " + ret);
+		if (ret >= 0) {
+			String happyMomentId = String.valueOf(ret);
+			return happyMomentId;
+		} else {
+			return null;
+		}
 	}
 
 	/*
