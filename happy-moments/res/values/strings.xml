@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Happy Moments</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Happy Moments</string>
+    <string name="title_add_happy_moment">Add Happy Moment :)</string>
+    
+    <string name="btn_add">Add Happy Moment</string>
+
+</resources>
