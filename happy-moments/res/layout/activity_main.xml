@@ -1,17 +1,19 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
+    android:background="@drawable/mainbg"
     android:scrollbars="none" >
 
     <ImageButton
-        android:id="@+id/happiness_jar"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:id="@+id/add_happy_moment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:contentDescription="Happiness Jar"
-        android:gravity="center"
-        android:src="@drawable/happiness_jar" />
+        android:contentDescription="Add Happy Moment"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/btn_plus" />
 
-</LinearLayout>
+</RelativeLayout>

@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
 		helper = new HappyMomentsSQLiteOpenHelper(this);
 		helper.getHappyMoments(); 
 
-		happinessJarButton = (ImageButton) findViewById(R.id.happiness_jar);
+		happinessJarButton = (ImageButton) findViewById(R.id.add_happy_moment);
 		happinessJarButton.setOnClickListener(new HappinessJarClickListener());
 	}
 
