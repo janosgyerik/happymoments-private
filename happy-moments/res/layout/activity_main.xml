@@ -2,9 +2,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/mainbg"
     android:orientation="vertical"
     android:scrollbars="none" >
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        android:contentDescription="Happiness Jar"
+        android:scaleType="centerCrop"
+        android:src="@drawable/happiness_jar" />
 
     <TextView
         android:id="@+id/happy_moment"
@@ -12,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:paddingTop="20dp"
+        android:paddingTop="10dp"
         android:textColor="#ffffff"
         android:textSize="18sp"
         android:textStyle="italic" >
