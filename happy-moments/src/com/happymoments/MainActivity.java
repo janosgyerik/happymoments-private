@@ -1,7 +1,5 @@
 package com.happymoments;
 
-import java.io.IOException;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -32,25 +30,11 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		Log.d(TAG, "++onCreate");
 		setContentView(R.layout.activity_main);
-		
+
 		if (((MainApplication)this.getApplication()).isLiteVersion()) {
 			// TODO
 			// ... impose limitations of the lite version ...
 			Log.d(TAG, "LITE version");
-		}
-		boolean success = false;
-		try {
-			success = HappyMomentsFileManager.backupDatabaseFile(getPackageName());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		if (success) {
-			Log.d(TAG, "SUCCESS!");
-			Toast.makeText(getBaseContext(), R.string.msg_backup_created, Toast.LENGTH_LONG).show();
-		}
-		else {
-			Log.d(TAG, "FAILURE!");
-			Toast.makeText(getBaseContext(), R.string.error_backup_failed, Toast.LENGTH_LONG).show();
 		}
 
 		helper = new HappyMomentsSQLiteOpenHelper(this);

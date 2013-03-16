@@ -61,13 +61,13 @@ public class HappyMomentsFileManager {
 	}
 
 	private static boolean backupDatabaseFile(String filename, String packageName) throws IOException {
-		File dataDir = Environment.getDataDirectory();
-		
-		if (BACKUPS_DIR.canWrite()) {
+		if (isExternalStorageWritable()) {
 			File backupDir = BACKUPS_DIR;
 			if (! backupDir.isDirectory()) {
 				backupDir.mkdirs();
 			}
+			
+			File dataDir = Environment.getDataDirectory();
 			File currentDB = new File(dataDir, getDatabasePath(packageName));
 			File backupFile = new File(backupDir, filename);
 

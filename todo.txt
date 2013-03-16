@@ -1,19 +1,17 @@
 version 0.1
 -----------
-get backup to work
 confirm restore works
-release on marketplace
 
 
 version 0.2
 -----------
-prettier
-    fix the button style when adding
-        might not be worth it: in the target UI there should not be a pop-up at all
-        as a temporary workaround maybe use the regular android buttons as other projects
-    overlay a semi-transparent white plus icon button on the main image
-    overlay stylish text with count
-        maybe use easel to figure out the style
+overlay a semi-transparent white plus icon button on the main image
+overlay stylish text with count
+    maybe use easel to figure out the style
+fix the button style when adding
+    might not be worth it: in the target UI there should not be a pop-up at all
+    as a temporary workaround maybe use the regular android buttons as other projects
+release on marketplace
 
 
 version 0.3
