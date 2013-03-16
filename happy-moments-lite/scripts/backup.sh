@@ -52,6 +52,13 @@ eval "set -- $args"  # save arguments in $@. Use "$@" in for loops, not $@
 
 cd $(dirname "$0"); . config.sh; cd ..
 
+test -f local.properties -a -f build.xml || {
+    msg local.properties or build.xml missing, runnig android update command
+    android update project --path .
+    msg You probably want to edit build.xml now and rerun this script.
+    exit 1
+}
+
 projectname=$(grep project.name build.xml | head -n 1 | sed -e 's/.*project name="\([^"]*\)".*/\1/')
 
 devicename=$(adb get-serialno)
