@@ -1,6 +1,5 @@
 version 0.2
 -----------
-remove the title bar, it's ugly
 overlay stylish text with count
     maybe use easel to figure out the style
 fix the button style when adding
