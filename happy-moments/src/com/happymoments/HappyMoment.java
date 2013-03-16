@@ -34,4 +34,12 @@ public class HappyMoment {
 		return String.format("text=%s date=%s", text, createdDate);
 	}
 
+	public String getText() {
+		return text;
+	}
+	
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
 }

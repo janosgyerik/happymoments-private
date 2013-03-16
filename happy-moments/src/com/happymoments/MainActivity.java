@@ -1,6 +1,8 @@
 package com.happymoments;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -14,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -40,7 +43,17 @@ public class MainActivity extends Activity {
 		}
 
 		helper = new HappyMomentsSQLiteOpenHelper(this);
-		helper.getHappyMoments(); 
+		List<HappyMoment> happyMoments = helper.getHappyMoments();
+		if (!happyMoments.isEmpty()) {
+			Collections.shuffle(happyMoments);
+			HappyMoment happyMoment = happyMoments.iterator().next();
+			TextView happyMomentView = (TextView) findViewById(R.id.happy_moment);
+			happyMomentView.setText(
+					String.format("\"%s\"", happyMoment.getText()));
+			TextView happyMomentDateView = (TextView) findViewById(R.id.happy_moment_date);
+			happyMomentDateView.setText(
+					String.format("%s", happyMoment.getCreatedDate().toLocaleString()));
+		}
 
 		happinessJarButton = (ImageButton) findViewById(R.id.add_happy_moment);
 		happinessJarButton.setOnClickListener(new HappinessJarClickListener());

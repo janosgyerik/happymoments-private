@@ -2,18 +2,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
     android:background="@drawable/mainbg"
+    android:orientation="vertical"
     android:scrollbars="none" >
+
+    <TextView
+        android:id="@+id/happy_moment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="20dp"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:textStyle="italic" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/happy_moment_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/happy_moment"
+        android:layout_centerHorizontal="true"
+        android:textColor="#e0e0e0"
+        android:textSize="14sp"
+        android:textStyle="italic" >
+    </TextView>
 
     <ImageButton
         android:id="@+id/add_happy_moment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:background="@android:color/transparent"
         android:contentDescription="Add Happy Moment"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
         android:src="@drawable/btn_plus" />
 
 </RelativeLayout>

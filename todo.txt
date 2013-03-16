@@ -1,7 +1,6 @@
 version 0.2
 -----------
 remove the title bar, it's ugly
-add random happy moment text at the top
 overlay stylish text with count
     maybe use easel to figure out the style
 fix the button style when adding
