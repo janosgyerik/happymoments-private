@@ -3,7 +3,6 @@ version 0.1
 get backup to work
     desperate attempt: create FULL version?
 confirm restore works
-add gps coordinates to db schema
 release on marketplace
 
 
@@ -16,6 +15,11 @@ prettier
     overlay a semi-transparent white plus icon button on the main image
     overlay stylish text with count
         maybe use easel to figure out the style
+
+
+version 0.3
+-----------
+- move FileSelectorActivity to separate common library
 
 
 version 1.0
