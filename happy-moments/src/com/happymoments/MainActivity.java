@@ -1,5 +1,7 @@
 package com.happymoments;
 
+import java.io.IOException;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -107,6 +109,39 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		return false;
+	}
+
+	private void handleRestoreDatabaseResult(Intent data) {
+		Bundle extras = data.getExtras();
+		if (extras != null) {
+			String filename = extras.getString(FileSelectorActivity.OUT_FILENAME);
+			Log.d(TAG, "selected filename = " + filename);
+			if (filename != null) {
+				helper.close();
+				try {
+					if (HappyMomentsFileManager.restoreDatabaseFile(filename, getPackageName())) {
+						Toast.makeText(getBaseContext(), R.string.msg_restore_success, Toast.LENGTH_LONG).show();
+					}
+					else {
+						Toast.makeText(getBaseContext(), R.string.error_restore_failed, Toast.LENGTH_LONG).show();
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+					Toast.makeText(getBaseContext(), R.string.error_restore_exception, Toast.LENGTH_LONG).show();
+				}
+			}
+		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode == RESULT_OK) {
+			switch (requestCode) {
+			case FILE_SELECTED:
+				handleRestoreDatabaseResult(data);
+				break;
+			}
+		}
 	}
 
 	@Override  
