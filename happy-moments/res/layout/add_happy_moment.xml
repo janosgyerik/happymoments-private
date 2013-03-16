@@ -20,7 +20,7 @@
         <Button
             android:id="@+id/btn_add"
             style="@style/wideButton"
-            android:text="@string/btn_add" />
+            android:text="@string/btn_add_happy_moment" />
     </LinearLayout>
 
 </LinearLayout>

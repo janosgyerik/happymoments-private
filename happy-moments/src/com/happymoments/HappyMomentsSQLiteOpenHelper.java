@@ -11,8 +11,10 @@ import java.util.List;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.BaseColumns;
 import android.util.Log;
 import android.util.SparseArray;
 
@@ -109,53 +111,38 @@ public class HappyMomentsSQLiteOpenHelper extends SQLiteOpenHelper {
 		}
 	}
 
-	/*
-	 * 
-	public List<HappyMoment> getQuestions() {
-		List<HappyMoment> questions = new ArrayList<IQuestion>();
+	public List<HappyMoment> getHappyMoments() {
+		List<HappyMoment> happyMoments = new ArrayList<HappyMoment>();
 
-		Map<String, QuestionData> questionDataMap = new HashMap<String, QuestionData>();
-
-		{
-			Cursor cursor = getQuestionListCursor();
-			final int idIndex = cursor.getColumnIndex(BaseColumns._ID);
-			final int textIndex = cursor.getColumnIndex("text");
-			final int categoryIndex = cursor.getColumnIndex("category");
-			final int explanationIndex = cursor.getColumnIndex("explanation");
-			while (cursor.moveToNext()) {
-				QuestionData data = new QuestionData();
-				String id = cursor.getString(idIndex);
-				data.setId(id);
-				data.setText(cursor.getString(textIndex));
-				data.setCategory(cursor.getString(categoryIndex));
-				data.setExplanation(cursor.getString(explanationIndex));
-				questionDataMap.put(id, data);
-			}
-			cursor.close();
+		Cursor cursor = getHappyMomentsListCursor();
+		final int idIndex = cursor.getColumnIndex(BaseColumns._ID);
+		final int textIndex = cursor.getColumnIndex("text");
+		final int filenameIndex = cursor.getColumnIndex("filename");
+		final int colorIndex = cursor.getColumnIndex("color");
+		final int createdDateIndex = cursor.getColumnIndex("created_dt");
+		
+		while (cursor.moveToNext()) {
+			HappyMoment happyMoment = new HappyMoment();
+			String id = cursor.getString(idIndex);
+			happyMoment.setId(id);
+			happyMoment.setText(cursor.getString(textIndex));
+			happyMoment.setFilename(cursor.getString(filenameIndex));
+			happyMoment.setColor(cursor.getString(colorIndex));
+			happyMoment.setCreatedDate(cursor.getString(createdDateIndex));
+			happyMoments.add(happyMoment);
 		}
+		cursor.close();
 
-		{
-			Cursor cursor = getAnswerListCursor();
-			final int questionIdIndex = cursor.getColumnIndex("question_id");
-			final int textIndex = cursor.getColumnIndex("text");
-			final int isCorrectIndex = cursor.getColumnIndex("is_correct");
-			while (cursor.moveToNext()) {
-				String questionId = cursor.getString(questionIdIndex);
-				String answer = cursor.getString(textIndex);
-				int isCorrect = cursor.getInt(isCorrectIndex);
-				QuestionData data = questionDataMap.get(questionId);
-				data.addAnswer(answer, isCorrect > 0);
-			}
-			cursor.close();
-		}
-
-		for (QuestionData data : questionDataMap.values()) {
-			IQuestion question = new Question(data.category, data.text,
-					data.explanation, data.correctAnswer, data.choices);
-			questions.add(question);
-		}
-
-		return questions;
+		return happyMoments;
 	}
-	 */
+	
+	public Cursor getHappyMomentsListCursor() {
+		Log.d(TAG, "get all happy moments");
+		Cursor cursor = getReadableDatabase().rawQuery(
+				"select _id, text, filename, color, created_dt "
+						+ " from happymoments_happymoment "
+						+ " order by updated_dt desc", null);
+		Log.d(TAG, "get all happy moments -> " + cursor.getCount());
+		return cursor;
+	}
 }

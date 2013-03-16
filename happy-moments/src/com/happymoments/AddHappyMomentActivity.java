@@ -19,7 +19,7 @@ public class AddHappyMomentActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Log.d(TAG, "+++ ON CREATE +++");
+		Log.d(TAG, "++onCreate");
 		setContentView(R.layout.add_happy_moment);
 
 		helper = new HappyMomentsSQLiteOpenHelper(this);
