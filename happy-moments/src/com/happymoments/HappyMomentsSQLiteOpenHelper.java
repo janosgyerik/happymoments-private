@@ -128,8 +128,9 @@ public class HappyMomentsSQLiteOpenHelper extends SQLiteOpenHelper {
 			happyMoment.setText(cursor.getString(textIndex));
 			happyMoment.setFilename(cursor.getString(filenameIndex));
 			happyMoment.setColor(cursor.getString(colorIndex));
-			happyMoment.setCreatedDate(cursor.getString(createdDateIndex));
+			happyMoment.setCreatedDate(cursor.getLong(createdDateIndex));
 			happyMoments.add(happyMoment);
+			Log.d(TAG, happyMoment.toString());
 		}
 		cursor.close();
 

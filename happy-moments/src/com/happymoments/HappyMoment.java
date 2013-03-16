@@ -1,11 +1,14 @@
 package com.happymoments;
 
+import java.util.Date;
+
 public class HappyMoment {
 
 	private String id;
 	private String text;
 	private String filename;
 	private String color;
+	private Date createdDate;
 
 	public void setId(String id) {
 		this.id = id;
@@ -23,7 +26,12 @@ public class HappyMoment {
 		this.color = color;
 	}
 
-	public void setCreatedDate(String createdDate) {
+	public void setCreatedDate(long millis) {
+		this.createdDate = new Date(millis);
+	}
+	
+	public String toString() {
+		return String.format("text=%s date=%s", text, createdDate);
 	}
 
 }
