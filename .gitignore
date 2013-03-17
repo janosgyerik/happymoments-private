@@ -5,3 +5,5 @@ tmp
 *.pyc
 /happy-moments-lite/backups/
 /happy-moments-lite/local.properties
+/happy-moments-lite/keys/
+/happy-moments/local.properties
