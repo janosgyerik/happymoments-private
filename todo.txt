@@ -1,6 +1,5 @@
 version 0.3 - change the layout
 -------------------------------
-- add refresh button
 - use more interesting font if possible
 
 
@@ -8,6 +7,22 @@ version 0.4
 -----------
 - add left-right arrows to happy moment
 - show last happy moment on startup
+
+
+later
+-----
+- view list of happy moments
+    - long-tap or double-tap on happy moment
+    - option to delete, with confirmation
+    - tap to edit
+- taking pictures
+    - take picture, save picture
+    - show picture of happy moment whenever available
+    - add picture to list view
+- record location
+    - settings view to enable/disable
+- database backup/restore
+- gallery view: happy moments by photo
 
 
 version 1.0

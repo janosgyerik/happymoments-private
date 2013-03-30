@@ -15,7 +15,16 @@
         android:src="@drawable/happiness_jar" />
 
     <ImageButton
-        android:id="@+id/add_happy_moment"
+        android:id="@+id/btn_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/happy_moment_wrapper"
+        android:layout_toLeftOf="@+id/btn_add"
+        android:contentDescription="Refresh Happy Moment"
+        android:src="@drawable/headerbtn_refresh" />
+
+    <ImageButton
+        android:id="@id/btn_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/happy_moment_wrapper"
@@ -52,5 +61,5 @@
             android:textStyle="italic" >
         </TextView>
     </LinearLayout>
-
+    
 </RelativeLayout>

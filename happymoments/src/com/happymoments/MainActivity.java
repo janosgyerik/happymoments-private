@@ -56,7 +56,10 @@ public class MainActivity extends Activity {
 
 	private HappyMomentsSQLiteOpenHelper helper;
 
-	private ImageButton happinessJarButton;
+	private List<HappyMoment> happyMoments;
+	private ImageView bgView;
+	private TextView happyMomentView;
+	private TextView happyMomentDateView;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -74,33 +77,47 @@ public class MainActivity extends Activity {
 		}
 
 		helper = new HappyMomentsSQLiteOpenHelper(this);
-		List<HappyMoment> happyMoments = helper.getHappyMoments();
+		happyMoments = helper.getHappyMoments();
+
+		happyMomentView = (TextView) findViewById(R.id.happy_moment);
+		happyMomentDateView = (TextView) findViewById(R.id.happy_moment_date);
+
+		bgView = (ImageView) findViewById(R.id.happiness_jar);
+
+		ImageButton addHappyMomentButton;
+		addHappyMomentButton = (ImageButton) findViewById(R.id.btn_add);
+		addHappyMomentButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent(MainActivity.this, AddHappyMomentActivity.class);
+				startActivityForResult(intent, RETURN_FROM_ADD_HAPPY_MOMENT);
+			}
+		});
+
+		ImageButton refreshHappyMomentButton;
+		refreshHappyMomentButton = (ImageButton) findViewById(R.id.btn_refresh);
+		refreshHappyMomentButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				refreshHappyMoment();
+			}
+		});
+		
+		refreshHappyMoment();
+	}
+
+	private void refreshHappyMoment() {
 		if (!happyMoments.isEmpty()) {
-			Collections.shuffle(happyMoments);
-			HappyMoment happyMoment = happyMoments.iterator().next();
-			TextView happyMomentView = (TextView) findViewById(R.id.happy_moment);
+			int index = random.nextInt(happyMoments.size());
+			HappyMoment happyMoment = happyMoments.get(index);
 			happyMomentView.setText(
 					String.format("\"%s\"", happyMoment.getText()));
-			TextView happyMomentDateView = (TextView) findViewById(R.id.happy_moment_date);
 			happyMomentDateView.setText(
 					String.format("%s", happyMoment.getCreatedDate().toLocaleString()));
 		}
 
-		ImageView imageView = (ImageView) findViewById(R.id.happiness_jar);
 		int resId = BGIMAGES[random.nextInt(BGIMAGES.length)];
-		imageView.setImageResource(resId);
-
-		happinessJarButton = (ImageButton) findViewById(R.id.add_happy_moment);
-		happinessJarButton.setOnClickListener(new HappinessJarClickListener());
-	}
-
-	class HappinessJarClickListener implements OnClickListener {
-
-		@Override
-		public void onClick(View arg0) {
-			Intent intent = new Intent(MainActivity.this, AddHappyMomentActivity.class);
-			startActivityForResult(intent, RETURN_FROM_ADD_HAPPY_MOMENT);
-		}
+		bgView.setImageResource(resId);
 	}
 
 	@Override
