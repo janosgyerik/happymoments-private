@@ -1,16 +1,15 @@
 version 0.3 - change the layout
 -------------------------------
-- move the happy moment down
-- add left-right arrows to happy moment
 - use random background
 - add background images
 - use more interesting font
-- change plus icon to white
+- replace plus icon with something better
 
 
 version 0.4
 -----------
 - double-tap to switch to random happy moment
+- add left-right arrows to happy moment
 - show last happy moment on startup
 
 
