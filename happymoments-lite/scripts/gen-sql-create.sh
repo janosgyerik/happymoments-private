@@ -2,10 +2,11 @@
 
 cd $(dirname "$0")
 
-db=../../django-happy-moments/sqlite3.db
+django_dir=../../django-happymoments
+db=$django_dir/sqlite3.db
 sql=../assets/sql_create.sql
 
-../../django-happy-moments/gen-sql-create.sh > $sql
+$django_dir/gen-sql-create.sh > $sql
 
 sqlite3 $db '.dump happymoments_happymoment' | grep INSERT >> $sql
 
