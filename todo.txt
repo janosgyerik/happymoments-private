@@ -1,12 +1,11 @@
 version 0.3 - change the layout
 -------------------------------
-- use more interesting font
-- replace plus icon with something better
+- add refresh button
+- use more interesting font if possible
 
 
 version 0.4
 -----------
-- double-tap to switch to random happy moment
 - add left-right arrows to happy moment
 - show last happy moment on startup
 
