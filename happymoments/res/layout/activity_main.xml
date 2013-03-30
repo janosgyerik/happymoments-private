@@ -6,6 +6,7 @@
     android:scrollbars="none" >
 
     <ImageView
+        android:id="@+id/happiness_jar"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_centerInParent="true"

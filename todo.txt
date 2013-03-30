@@ -1,7 +1,5 @@
 version 0.3 - change the layout
 -------------------------------
-- use random background
-- add background images
 - use more interesting font
 - replace plus icon with something better
 
