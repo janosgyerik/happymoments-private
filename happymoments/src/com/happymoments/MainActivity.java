@@ -1,7 +1,6 @@
 package com.happymoments;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -9,6 +8,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -53,6 +53,9 @@ public class MainActivity extends Activity {
 		R.drawable.bg20,
 	};
 	private static final Random random = new Random();
+	
+//	private static final String FONT_NAME = "jr.ttf";
+	private static final String FONT_NAME = "SF_Burlington_Script.ttf";
 
 	private HappyMomentsSQLiteOpenHelper helper;
 
@@ -79,7 +82,10 @@ public class MainActivity extends Activity {
 		helper = new HappyMomentsSQLiteOpenHelper(this);
 		happyMoments = helper.getHappyMoments();
 
+		Typeface font;
+		font = Typeface.createFromAsset(getAssets(), FONT_NAME);
 		happyMomentView = (TextView) findViewById(R.id.happy_moment);
+		happyMomentView.setTypeface(font);  
 		happyMomentDateView = (TextView) findViewById(R.id.happy_moment_date);
 
 		bgView = (ImageView) findViewById(R.id.happiness_jar);
@@ -102,7 +108,7 @@ public class MainActivity extends Activity {
 				refreshHappyMoment();
 			}
 		});
-		
+
 		refreshHappyMoment();
 	}
 
@@ -111,7 +117,7 @@ public class MainActivity extends Activity {
 			int index = random.nextInt(happyMoments.size());
 			HappyMoment happyMoment = happyMoments.get(index);
 			happyMomentView.setText(
-					String.format("\"%s\"", happyMoment.getText()));
+					String.format("%s", happyMoment.getText()));
 			happyMomentDateView.setText(
 					String.format("%s", happyMoment.getCreatedDate().toLocaleString()));
 		}
