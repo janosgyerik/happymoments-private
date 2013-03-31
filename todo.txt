@@ -1,22 +1,47 @@
 version 0.4
 -----------
-- add left-right arrows to happy moment
+- when refreshing, make sure to reroll a different bg and happy moment
+- make the toolbar buttons slightly bigger
 - show last happy moment on startup
+- add settings page
+    - record location
+        - disabled by default
+        - not implemented yet
+    - show last happy moment or random by default
+        - use at startup
+        - use after adding happy moment
+        - use after restoring db
+- add left-right arrows to happy moment
+    - no right-arrow on last happy moment
+- add about page
 
 
-later
------
-- view list of happy moments
-    - long-tap or double-tap on happy moment
-    - option to delete, with confirmation
-    - tap to edit
+release target: taking pictures
+-----------------------------
 - taking pictures
     - take picture, save picture
     - show picture of happy moment whenever available
     - add picture to list view
+
+
+release target: recording location
+----------------------------------
 - record location
-    - settings view to enable/disable
-- database backup/restore
+    - if enabled in settings, show a checkbox checked by default
+    - if disabled in settings, do not show checkbox
+    - disabled by default
+
+
+release target: view happy moments
+----------------------------------
+- view list of happy moments
+    - long-tap or double-tap on happy moment
+    - option to delete, with confirmation
+    - tap to edit
+
+
+later
+-----
 - gallery view: happy moments by photo
 
 

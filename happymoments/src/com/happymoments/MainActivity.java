@@ -20,6 +20,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,8 +54,8 @@ public class MainActivity extends Activity {
 		R.drawable.bg20,
 	};
 	private static final Random random = new Random();
-	
-//	private static final String FONT_NAME = "jr.ttf";
+
+	//	private static final String FONT_NAME = "jr.ttf";
 	private static final String FONT_NAME = "SF_Burlington_Script.ttf";
 
 	private HappyMomentsSQLiteOpenHelper helper;
@@ -63,6 +64,10 @@ public class MainActivity extends Activity {
 	private ImageView bgView;
 	private TextView happyMomentView;
 	private TextView happyMomentDateView;
+
+	private ImageButton refreshHappyMomentButton;
+
+	private LinearLayout happyMomentWrapper;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -82,6 +87,8 @@ public class MainActivity extends Activity {
 		helper = new HappyMomentsSQLiteOpenHelper(this);
 		happyMoments = helper.getHappyMoments();
 
+		happyMomentWrapper = (LinearLayout) findViewById(R.id.happy_moment_wrapper);
+
 		Typeface font;
 		font = Typeface.createFromAsset(getAssets(), FONT_NAME);
 		happyMomentView = (TextView) findViewById(R.id.happy_moment);
@@ -100,7 +107,6 @@ public class MainActivity extends Activity {
 			}
 		});
 
-		ImageButton refreshHappyMomentButton;
 		refreshHappyMomentButton = (ImageButton) findViewById(R.id.btn_refresh);
 		refreshHappyMomentButton.setOnClickListener(new OnClickListener() {
 			@Override
@@ -120,6 +126,19 @@ public class MainActivity extends Activity {
 					String.format("%s", happyMoment.getText()));
 			happyMomentDateView.setText(
 					String.format("%s", happyMoment.getCreatedDate().toLocaleString()));
+
+			happyMomentWrapper.setVisibility(View.VISIBLE);
+
+			if (happyMoments.size() > 1) {
+				refreshHappyMomentButton.setVisibility(View.VISIBLE);
+			}
+			else {
+				refreshHappyMomentButton.setVisibility(View.GONE);
+			}
+		}
+		else {
+			happyMomentWrapper.setVisibility(View.GONE);
+			refreshHappyMomentButton.setVisibility(View.GONE);
 		}
 
 		int resId = BGIMAGES[random.nextInt(BGIMAGES.length)];
@@ -182,7 +201,17 @@ public class MainActivity extends Activity {
 		return false;
 	}
 
-	private void handleRestoreDatabaseResult(Intent data) {
+	private void loadAllHappyMoments() {
+		happyMoments = helper.getHappyMoments();
+	}
+
+	private void loadNewHappyMoment() {
+		// TODO: should load only the new happy moment (the latest) and append to the list
+		loadAllHappyMoments();
+		refreshHappyMoment();
+	}
+
+	private boolean handleRestoreDatabaseResult(Intent data) {
 		Bundle extras = data.getExtras();
 		if (extras != null) {
 			String filename = extras.getString(FileSelectorActivity.OUT_FILENAME);
@@ -192,6 +221,7 @@ public class MainActivity extends Activity {
 				try {
 					if (HappyMomentsFileManager.restoreDatabaseFile(filename, getPackageName())) {
 						Toast.makeText(getBaseContext(), R.string.msg_restore_success, Toast.LENGTH_LONG).show();
+						return true;
 					}
 					else {
 						Toast.makeText(getBaseContext(), R.string.error_restore_failed, Toast.LENGTH_LONG).show();
@@ -202,14 +232,22 @@ public class MainActivity extends Activity {
 				}
 			}
 		}
+		return false;
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Log.d(TAG, String.format("resultCode=%d requestCode=%d", resultCode, requestCode));
 		if (resultCode == RESULT_OK) {
 			switch (requestCode) {
+			case RETURN_FROM_ADD_HAPPY_MOMENT:
+				loadNewHappyMoment();
+				break;
 			case FILE_SELECTED:
-				handleRestoreDatabaseResult(data);
+				if (handleRestoreDatabaseResult(data)) {
+					loadAllHappyMoments();
+					refreshHappyMoment();
+				}
 				break;
 			}
 		}

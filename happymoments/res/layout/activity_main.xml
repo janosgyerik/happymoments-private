@@ -14,23 +14,29 @@
         android:scaleType="centerCrop"
         android:src="@drawable/happiness_jar" />
 
-    <ImageButton
-        android:id="@+id/btn_refresh"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/toolbar_wrapper"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/happy_moment_wrapper"
-        android:layout_toLeftOf="@+id/btn_add"
-        android:contentDescription="Refresh Happy Moment"
-        android:src="@drawable/headerbtn_refresh" />
+        android:layout_alignWithParentIfMissing="true"
+        android:gravity="right"
+        android:orientation="horizontal" >
 
-    <ImageButton
-        android:id="@id/btn_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/happy_moment_wrapper"
-        android:layout_alignParentRight="true"
-        android:contentDescription="Add Happy Moment"
-        android:src="@drawable/headerbtn_plus" />
+        <ImageButton
+            android:id="@+id/btn_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Refresh Happy Moment"
+            android:src="@drawable/headerbtn_refresh" />
+
+        <ImageButton
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Add Happy Moment"
+            android:src="@drawable/headerbtn_plus" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@id/happy_moment_wrapper"
@@ -62,5 +68,14 @@
             android:textStyle="normal" >
         </TextView>
     </LinearLayout>
+
+    <!--
+    <TextView
+        android:id="@+id/bottom"
+        android:layout_width="0px"
+        android:layout_height="0px"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+    -->
 
 </RelativeLayout>

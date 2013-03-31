@@ -36,6 +36,7 @@ public class AddHappyMomentActivity extends Activity {
 				if (happyMoment != null) {
 					if (helper.addHappyMoment(happyMoment) != null) {
 						Toast.makeText(AddHappyMomentActivity.this, "Saved Happy Moment :)", Toast.LENGTH_SHORT).show();
+						setResult(Activity.RESULT_OK);
 					} else {
 						Toast.makeText(AddHappyMomentActivity.this, "Could not save Happy Moment :(", Toast.LENGTH_SHORT).show();
 					}
@@ -44,7 +45,7 @@ public class AddHappyMomentActivity extends Activity {
 			}
 		});
 	}
-	
+
 	static String capitalize(String name) {
 		if (name == null || name.trim().length() < 1) return null;
 		name = name.trim();
