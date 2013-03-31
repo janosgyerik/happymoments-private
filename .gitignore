@@ -3,7 +3,7 @@ gen
 .DS_Store
 tmp
 *.pyc
-/happymoments-lite/backups/
+/happymoments/backups/
 /happymoments-lite/local.properties
 /happymoments-lite/keys/
 /happymoments/local.properties

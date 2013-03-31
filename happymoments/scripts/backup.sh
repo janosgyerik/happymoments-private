@@ -50,7 +50,7 @@ eval "set -- $args"  # save arguments in $@. Use "$@" in for loops, not $@
 #test $# = 0 && usage
 
 
-cd $(dirname "$0"); . config.sh; cd ..
+cd $(dirname "$0")/..
 
 test -f local.properties -a -f build.xml || {
     msg local.properties or build.xml missing, runnig android update command
