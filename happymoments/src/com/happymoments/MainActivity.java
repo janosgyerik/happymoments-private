@@ -64,7 +64,7 @@ public class MainActivity extends Activity {
 	private ImageView bgView;
 	private TextView happyMomentView;
 	private TextView happyMomentDateView;
-	
+
 	private ImageButton refreshHappyMomentButton;
 
 	private LinearLayout happyMomentWrapper;
@@ -128,7 +128,7 @@ public class MainActivity extends Activity {
 					String.format("%s", happyMoment.getCreatedDate().toLocaleString()));
 
 			happyMomentWrapper.setVisibility(View.VISIBLE);
-			
+
 			if (happyMoments.size() > 1) {
 				refreshHappyMomentButton.setVisibility(View.VISIBLE);
 			}
@@ -201,7 +201,17 @@ public class MainActivity extends Activity {
 		return false;
 	}
 
-	private void handleRestoreDatabaseResult(Intent data) {
+	private void loadAllHappyMoments() {
+		happyMoments = helper.getHappyMoments();
+	}
+
+	private void loadNewHappyMoment() {
+		// TODO: should load only the new happy moment (the latest) and append to the list
+		loadAllHappyMoments();
+		refreshHappyMoment();
+	}
+
+	private boolean handleRestoreDatabaseResult(Intent data) {
 		Bundle extras = data.getExtras();
 		if (extras != null) {
 			String filename = extras.getString(FileSelectorActivity.OUT_FILENAME);
@@ -211,6 +221,7 @@ public class MainActivity extends Activity {
 				try {
 					if (HappyMomentsFileManager.restoreDatabaseFile(filename, getPackageName())) {
 						Toast.makeText(getBaseContext(), R.string.msg_restore_success, Toast.LENGTH_LONG).show();
+						return true;
 					}
 					else {
 						Toast.makeText(getBaseContext(), R.string.error_restore_failed, Toast.LENGTH_LONG).show();
@@ -221,14 +232,22 @@ public class MainActivity extends Activity {
 				}
 			}
 		}
+		return false;
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Log.d(TAG, String.format("resultCode=%d requestCode=%d", resultCode, requestCode));
 		if (resultCode == RESULT_OK) {
 			switch (requestCode) {
+			case RETURN_FROM_ADD_HAPPY_MOMENT:
+				loadNewHappyMoment();
+				break;
 			case FILE_SELECTED:
-				handleRestoreDatabaseResult(data);
+				if (handleRestoreDatabaseResult(data)) {
+					loadAllHappyMoments();
+					refreshHappyMoment();
+				}
 				break;
 			}
 		}
