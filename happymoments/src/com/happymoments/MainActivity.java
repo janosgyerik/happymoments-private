@@ -1,13 +1,14 @@
 package com.happymoments;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -18,6 +19,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,9 +30,39 @@ public class MainActivity extends Activity {
 	private static final int RETURN_FROM_ADD_HAPPY_MOMENT = 1;
 	private static final int FILE_SELECTED = 2;
 
+	private static final int[] BGIMAGES = new int[] {
+		R.drawable.bg01,
+		R.drawable.bg02,
+		R.drawable.bg03,
+		R.drawable.bg04,
+		R.drawable.bg05,
+		R.drawable.bg06,
+		R.drawable.bg07,
+		R.drawable.bg08,
+		R.drawable.bg09,
+		R.drawable.bg10,
+		R.drawable.bg11,
+		R.drawable.bg12,
+		R.drawable.bg13,
+		R.drawable.bg14,
+		R.drawable.bg15,
+		R.drawable.bg16,
+		R.drawable.bg17,
+		R.drawable.bg18,
+		R.drawable.bg19,
+		R.drawable.bg20,
+	};
+	private static final Random random = new Random();
+	
+//	private static final String FONT_NAME = "jr.ttf";
+	private static final String FONT_NAME = "SF_Burlington_Script.ttf";
+
 	private HappyMomentsSQLiteOpenHelper helper;
 
-	private ImageButton happinessJarButton;
+	private List<HappyMoment> happyMoments;
+	private ImageView bgView;
+	private TextView happyMomentView;
+	private TextView happyMomentDateView;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -48,29 +80,50 @@ public class MainActivity extends Activity {
 		}
 
 		helper = new HappyMomentsSQLiteOpenHelper(this);
-		List<HappyMoment> happyMoments = helper.getHappyMoments();
+		happyMoments = helper.getHappyMoments();
+
+		Typeface font;
+		font = Typeface.createFromAsset(getAssets(), FONT_NAME);
+		happyMomentView = (TextView) findViewById(R.id.happy_moment);
+		happyMomentView.setTypeface(font);  
+		happyMomentDateView = (TextView) findViewById(R.id.happy_moment_date);
+
+		bgView = (ImageView) findViewById(R.id.happiness_jar);
+
+		ImageButton addHappyMomentButton;
+		addHappyMomentButton = (ImageButton) findViewById(R.id.btn_add);
+		addHappyMomentButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent(MainActivity.this, AddHappyMomentActivity.class);
+				startActivityForResult(intent, RETURN_FROM_ADD_HAPPY_MOMENT);
+			}
+		});
+
+		ImageButton refreshHappyMomentButton;
+		refreshHappyMomentButton = (ImageButton) findViewById(R.id.btn_refresh);
+		refreshHappyMomentButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				refreshHappyMoment();
+			}
+		});
+
+		refreshHappyMoment();
+	}
+
+	private void refreshHappyMoment() {
 		if (!happyMoments.isEmpty()) {
-			Collections.shuffle(happyMoments);
-			HappyMoment happyMoment = happyMoments.iterator().next();
-			TextView happyMomentView = (TextView) findViewById(R.id.happy_moment);
+			int index = random.nextInt(happyMoments.size());
+			HappyMoment happyMoment = happyMoments.get(index);
 			happyMomentView.setText(
-					String.format("\"%s\"", happyMoment.getText()));
-			TextView happyMomentDateView = (TextView) findViewById(R.id.happy_moment_date);
+					String.format("%s", happyMoment.getText()));
 			happyMomentDateView.setText(
 					String.format("%s", happyMoment.getCreatedDate().toLocaleString()));
 		}
 
-		happinessJarButton = (ImageButton) findViewById(R.id.add_happy_moment);
-		happinessJarButton.setOnClickListener(new HappinessJarClickListener());
-	}
-
-	class HappinessJarClickListener implements OnClickListener {
-
-		@Override
-		public void onClick(View arg0) {
-			Intent intent = new Intent(MainActivity.this, AddHappyMomentActivity.class);
-			startActivityForResult(intent, RETURN_FROM_ADD_HAPPY_MOMENT);
-		}
+		int resId = BGIMAGES[random.nextInt(BGIMAGES.length)];
+		bgView.setImageResource(resId);
 	}
 
 	@Override

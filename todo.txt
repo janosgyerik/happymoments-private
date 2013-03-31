@@ -1,14 +1,30 @@
-version 0.3
+version 0.4
 -----------
-- move FileSelectorActivity to separate common library
-- overlay stylish text with count
-    maybe use easel to figure out the style
+- add left-right arrows to happy moment
+- show last happy moment on startup
+
+
+later
+-----
+- view list of happy moments
+    - long-tap or double-tap on happy moment
+    - option to delete, with confirmation
+    - tap to edit
+- taking pictures
+    - take picture, save picture
+    - show picture of happy moment whenever available
+    - add picture to list view
+- record location
+    - settings view to enable/disable
+- database backup/restore
+- gallery view: happy moments by photo
 
 
 version 1.0
 -----------
-make it pretty
-replace the jar image
-pretty launcher icon
+- make it pretty
+    - add happy moment counter somewhere?
+- pretty launcher icon
+- replace all images with Create Commons licensed
 
 

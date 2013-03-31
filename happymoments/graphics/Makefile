@@ -52,7 +52,7 @@ $(mdpi_dir)/menu_%.png: $(src_dir)/menu_%.png
 	identify $@
 
 $(hdpi_dir)/btn_%.png: $(src_dir)/btn_%.png
-	convert -geometry 128x -channel Alpha -evaluate Divide 3 $< $@
+	convert -geometry 48x $< $@
 	identify $@
 
 $(ldpi_dir)/btn_%.png: $(src_dir)/btn_%.png
@@ -60,7 +60,7 @@ $(ldpi_dir)/btn_%.png: $(src_dir)/btn_%.png
 	identify $@
 
 $(mdpi_dir)/btn_%.png: $(src_dir)/btn_%.png
-	convert -geometry 128x -channel Alpha -evaluate Divide 3 $< $@
+	convert -geometry 36x $< $@
 	identify $@
 
 $(hdpi_dir)/headerbtn_%.png: $(src_dir)/headerbtn_%.png
