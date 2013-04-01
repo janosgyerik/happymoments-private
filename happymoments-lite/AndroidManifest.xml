@@ -38,6 +38,11 @@
             android:label="File Selector"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
+        <activity
+            android:name="com.happymoments.HappyMomentListActivity"
+            android:label="Happy Moments List"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
     </application>
 
 </manifest>

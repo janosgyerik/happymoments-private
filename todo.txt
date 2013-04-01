@@ -35,9 +35,7 @@ release target: recording location
 release target: view happy moments
 ----------------------------------
 - view list of happy moments
-    - long-tap or double-tap on happy moment
-    - option to delete, with confirmation
-    - tap to edit
+    - click to select and switch to
 
 
 later
@@ -47,9 +45,7 @@ later
 
 version 1.0
 -----------
-- make it pretty
-    - add happy moment counter somewhere?
 - pretty launcher icon
-- replace all images with Create Commons licensed
+- replace all images with Create Commons licensed or own
 
 

@@ -32,5 +32,10 @@
     
     
     <string name="msg_no_matching_files">No matching files</string>
+    
+    
+    <string name="title_delete_happymoment">Delete Happy Moment</string>
+    <string name="msg_happymoment_deleted">Deleted Happy Moment</string>
+    
 
 </resources>

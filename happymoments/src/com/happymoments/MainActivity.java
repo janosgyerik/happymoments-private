@@ -16,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
@@ -28,8 +29,9 @@ public class MainActivity extends Activity {
 
 	private static final String TAG = MainActivity.class.getSimpleName();
 
-	private static final int RETURN_FROM_ADD_HAPPY_MOMENT = 1;
-	private static final int FILE_SELECTED = 2;
+	private static final int FILE_SELECTED = 1;
+	private static final int RETURN_FROM_ADD_HAPPY_MOMENT = 2;
+	private static final int RETURN_FROM_HAPPY_MOMENT_LIST = 3;
 
 	private static final int[] BGIMAGES = new int[] {
 		R.drawable.bg01,
@@ -93,6 +95,14 @@ public class MainActivity extends Activity {
 		font = Typeface.createFromAsset(getAssets(), FONT_NAME);
 		happyMomentView = (TextView) findViewById(R.id.happy_moment);
 		happyMomentView.setTypeface(font);  
+		happyMomentView.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				Intent intent = new Intent(MainActivity.this, HappyMomentListActivity.class);
+				startActivityForResult(intent, RETURN_FROM_HAPPY_MOMENT_LIST);
+				return false;
+			}
+		});
 		happyMomentDateView = (TextView) findViewById(R.id.happy_moment_date);
 
 		bgView = (ImageView) findViewById(R.id.mainbg);
