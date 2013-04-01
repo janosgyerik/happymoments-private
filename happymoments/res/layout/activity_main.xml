@@ -6,11 +6,11 @@
     android:scrollbars="none" >
 
     <ImageView
-        android:id="@+id/happiness_jar"
+        android:id="@+id/mainbg"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_centerInParent="true"
-        android:contentDescription="Happiness Jar"
+        android:contentDescription="[mainbg]"
         android:scaleType="centerCrop"
         android:src="@drawable/happiness_jar" />
 
@@ -18,28 +18,25 @@
         android:id="@+id/toolbar_wrapper"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/happy_moment_wrapper"
-        android:layout_alignWithParentIfMissing="true"
-        android:gravity="right"
+        android:layout_centerInParent="true"
+        android:gravity="center"
         android:orientation="horizontal" >
 
         <ImageButton
             android:id="@+id/btn_refresh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/toolButton"
             android:contentDescription="Refresh Happy Moment"
-            android:src="@drawable/headerbtn_refresh" />
+            android:src="@drawable/btn_refresh" />
 
         <ImageButton
             android:id="@+id/btn_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/toolButton"
             android:contentDescription="Add Happy Moment"
-            android:src="@drawable/headerbtn_plus" />
+            android:src="@drawable/btn_plus" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@id/happy_moment_wrapper"
+        android:id="@+id/happy_moment_wrapper"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

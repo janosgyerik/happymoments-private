@@ -95,7 +95,7 @@ public class MainActivity extends Activity {
 		happyMomentView.setTypeface(font);  
 		happyMomentDateView = (TextView) findViewById(R.id.happy_moment_date);
 
-		bgView = (ImageView) findViewById(R.id.happiness_jar);
+		bgView = (ImageView) findViewById(R.id.mainbg);
 
 		ImageButton addHappyMomentButton;
 		addHappyMomentButton = (ImageButton) findViewById(R.id.btn_add);
