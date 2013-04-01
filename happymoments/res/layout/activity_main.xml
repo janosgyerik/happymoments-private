@@ -18,9 +18,8 @@
         android:id="@+id/toolbar_wrapper"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/happy_moment_wrapper"
-        android:layout_alignWithParentIfMissing="true"
-        android:gravity="right"
+        android:layout_centerInParent="true"
+        android:gravity="center"
         android:orientation="horizontal" >
 
         <ImageButton
@@ -37,7 +36,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@id/happy_moment_wrapper"
+        android:id="@+id/happy_moment_wrapper"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

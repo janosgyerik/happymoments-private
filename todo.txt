@@ -1,7 +1,6 @@
 version 0.4
 -----------
 - buttons
-    - move buttons to middle
     - update screenshots
     - increment version and release
 - when refreshing, make sure to reroll a different bg and happy moment
