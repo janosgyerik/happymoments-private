@@ -10,12 +10,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.provider.BaseColumns;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
@@ -28,8 +30,9 @@ public class MainActivity extends Activity {
 
 	private static final String TAG = MainActivity.class.getSimpleName();
 
-	private static final int RETURN_FROM_ADD_HAPPY_MOMENT = 1;
-	private static final int FILE_SELECTED = 2;
+	private static final int FILE_SELECTED = 1;
+	private static final int RETURN_FROM_ADD_HAPPY_MOMENT = 2;
+	private static final int RETURN_FROM_HAPPY_MOMENT_LIST = 3;
 
 	private static final int[] BGIMAGES = new int[] {
 		R.drawable.bg01,
@@ -93,6 +96,14 @@ public class MainActivity extends Activity {
 		font = Typeface.createFromAsset(getAssets(), FONT_NAME);
 		happyMomentView = (TextView) findViewById(R.id.happy_moment);
 		happyMomentView.setTypeface(font);  
+		happyMomentView.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				Intent intent = new Intent(MainActivity.this, HappyMomentListActivity.class);
+				startActivityForResult(intent, RETURN_FROM_HAPPY_MOMENT_LIST);
+				return false;
+			}
+		});
 		happyMomentDateView = (TextView) findViewById(R.id.happy_moment_date);
 
 		bgView = (ImageView) findViewById(R.id.mainbg);
@@ -117,17 +128,21 @@ public class MainActivity extends Activity {
 
 		refreshHappyMoment();
 	}
+	
+	private void refreshHappyMoment(HappyMoment happyMoment) {
+		happyMomentView.setText(
+				String.format("%s", happyMoment.getText()));
+		happyMomentDateView.setText(
+				String.format("%s", happyMoment.getCreatedDate().toLocaleString()));
+
+		happyMomentWrapper.setVisibility(View.VISIBLE);
+	}
 
 	private void refreshHappyMoment() {
 		if (!happyMoments.isEmpty()) {
 			int index = random.nextInt(happyMoments.size());
 			HappyMoment happyMoment = happyMoments.get(index);
-			happyMomentView.setText(
-					String.format("%s", happyMoment.getText()));
-			happyMomentDateView.setText(
-					String.format("%s", happyMoment.getCreatedDate().toLocaleString()));
-
-			happyMomentWrapper.setVisibility(View.VISIBLE);
+			refreshHappyMoment(happyMoment);
 
 			if (happyMoments.size() > 1) {
 				refreshHappyMomentButton.setVisibility(View.VISIBLE);
@@ -211,6 +226,14 @@ public class MainActivity extends Activity {
 		refreshHappyMoment();
 	}
 
+	private void loadHappyMoment(String happyMomentId) {
+		for (HappyMoment happyMoment : happyMoments) {
+			if (happyMoment.getId().equals(happyMomentId)) {
+				refreshHappyMoment(happyMoment);
+			}
+		}
+	}
+
 	private boolean handleRestoreDatabaseResult(Intent data) {
 		Bundle extras = data.getExtras();
 		if (extras != null) {
@@ -242,6 +265,10 @@ public class MainActivity extends Activity {
 			switch (requestCode) {
 			case RETURN_FROM_ADD_HAPPY_MOMENT:
 				loadNewHappyMoment();
+				break;
+			case RETURN_FROM_HAPPY_MOMENT_LIST:
+				String happyMomentId = data.getExtras().getString(BaseColumns._ID);
+				loadHappyMoment(happyMomentId);
 				break;
 			case FILE_SELECTED:
 				if (handleRestoreDatabaseResult(data)) {

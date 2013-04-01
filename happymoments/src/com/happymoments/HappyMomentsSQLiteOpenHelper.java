@@ -114,7 +114,7 @@ public class HappyMomentsSQLiteOpenHelper extends SQLiteOpenHelper {
 	public List<HappyMoment> getHappyMoments() {
 		List<HappyMoment> happyMoments = new ArrayList<HappyMoment>();
 
-		Cursor cursor = getHappyMomentsListCursor();
+		Cursor cursor = getHappyMomentListCursor();
 		final int idIndex = cursor.getColumnIndex(BaseColumns._ID);
 		final int textIndex = cursor.getColumnIndex("text");
 		final int filenameIndex = cursor.getColumnIndex("filename");
@@ -130,14 +130,13 @@ public class HappyMomentsSQLiteOpenHelper extends SQLiteOpenHelper {
 			happyMoment.setColor(cursor.getString(colorIndex));
 			happyMoment.setCreatedDate(cursor.getLong(createdDateIndex));
 			happyMoments.add(happyMoment);
-			Log.d(TAG, happyMoment.toString());
 		}
 		cursor.close();
 
 		return happyMoments;
 	}
 	
-	public Cursor getHappyMomentsListCursor() {
+	public Cursor getHappyMomentListCursor() {
 		Log.d(TAG, "get all happy moments");
 		Cursor cursor = getReadableDatabase().rawQuery(
 				"select _id, text, filename, color, created_dt "
@@ -146,4 +145,12 @@ public class HappyMomentsSQLiteOpenHelper extends SQLiteOpenHelper {
 		Log.d(TAG, "get all happy moments -> " + cursor.getCount());
 		return cursor;
 	}
+	
+	public boolean deleteHappyMoment(String happyMomentId) {
+		getWritableDatabase().delete(HAPPYMOMENTS_TABLE_NAME, "_id = ?", new String[]{ happyMomentId });
+		Log.d(TAG, "deleted happy moment " + happyMomentId);
+		// TODO error handling
+		return true;
+	}
+
 }
