@@ -1,8 +1,5 @@
 version 0.4
 -----------
-- buttons
-    - update screenshots
-    - increment version and release
 - when refreshing, make sure to reroll a different bg and happy moment
 - make the toolbar buttons slightly bigger
 - show last happy moment on startup
