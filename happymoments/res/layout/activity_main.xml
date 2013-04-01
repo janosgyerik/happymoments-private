@@ -25,17 +25,15 @@
 
         <ImageButton
             android:id="@+id/btn_refresh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/toolButton"
             android:contentDescription="Refresh Happy Moment"
-            android:src="@drawable/headerbtn_refresh" />
+            android:src="@drawable/btn_refresh" />
 
         <ImageButton
             android:id="@+id/btn_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/toolButton"
             android:contentDescription="Add Happy Moment"
-            android:src="@drawable/headerbtn_plus" />
+            android:src="@drawable/btn_plus" />
     </LinearLayout>
 
     <LinearLayout
