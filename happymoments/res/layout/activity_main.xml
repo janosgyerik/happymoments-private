@@ -6,11 +6,11 @@
     android:scrollbars="none" >
 
     <ImageView
-        android:id="@+id/happiness_jar"
+        android:id="@+id/mainbg"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_centerInParent="true"
-        android:contentDescription="Happiness Jar"
+        android:contentDescription="[mainbg]"
         android:scaleType="centerCrop"
         android:src="@drawable/happiness_jar" />
 
