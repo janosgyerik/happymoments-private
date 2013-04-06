@@ -4,11 +4,24 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+    <!--
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="0sp"
+        android:text="@string/msg_add_happy_moment" >
+    </TextView>
+    -->
+
     <EditText
         android:id="@+id/happy_moment_text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="top"
+        android:inputType="textCapSentences|textAutoCorrect|textMultiLine|textShortMessage"
         android:lines="5" >
     </EditText>
 
