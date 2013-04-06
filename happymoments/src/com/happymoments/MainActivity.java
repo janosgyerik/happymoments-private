@@ -72,6 +72,8 @@ public class MainActivity extends Activity {
 
 	private LinearLayout happyMomentWrapper;
 
+	private int currentIndex = -1;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -128,8 +130,8 @@ public class MainActivity extends Activity {
 
 		refreshHappyMoment();
 	}
-	
-	private void refreshHappyMoment(HappyMoment happyMoment) {
+
+	private void showHappyMoment(HappyMoment happyMoment) {
 		happyMomentView.setText(
 				String.format("%s", happyMoment.getText()));
 		happyMomentDateView.setText(
@@ -138,11 +140,34 @@ public class MainActivity extends Activity {
 		happyMomentWrapper.setVisibility(View.VISIBLE);
 	}
 
+	private HappyMoment getAnotherHappyMoment() {
+		HappyMoment happyMoment;
+
+		int index;
+		if (happyMoments.size() > 1) {
+			if (happyMoments.size() == 2) {
+				index = 1 - currentIndex;
+			}
+			else {
+				while ((index = random.nextInt(happyMoments.size())) == currentIndex) {
+					Log.d(TAG, "same happy moment, rerolling...");
+				}
+			}
+		}
+		else {
+			index = 0;
+		}
+
+		happyMoment = happyMoments.get(index);
+		currentIndex = index;
+
+		return happyMoment;
+	}
+
 	private void refreshHappyMoment() {
 		if (!happyMoments.isEmpty()) {
-			int index = random.nextInt(happyMoments.size());
-			HappyMoment happyMoment = happyMoments.get(index);
-			refreshHappyMoment(happyMoment);
+			HappyMoment happyMoment = getAnotherHappyMoment();
+			showHappyMoment(happyMoment);
 
 			if (happyMoments.size() > 1) {
 				refreshHappyMomentButton.setVisibility(View.VISIBLE);
@@ -229,7 +254,7 @@ public class MainActivity extends Activity {
 	private void loadHappyMoment(String happyMomentId) {
 		for (HappyMoment happyMoment : happyMoments) {
 			if (happyMoment.getId().equals(happyMomentId)) {
-				refreshHappyMoment(happyMoment);
+				showHappyMoment(happyMoment);
 			}
 		}
 	}
