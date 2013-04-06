@@ -73,6 +73,7 @@ public class MainActivity extends Activity {
 	private LinearLayout happyMomentWrapper;
 
 	private int currentIndex = -1;
+	private int currentBgIndex = -1;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -164,6 +165,18 @@ public class MainActivity extends Activity {
 		return happyMoment;
 	}
 
+	private int getAnotherBgResource() {
+		int index;
+		while ((index = random.nextInt(BGIMAGES.length)) == currentBgIndex) {
+			Log.d(TAG, "same bg resource, rerolling...");	
+		}
+
+		int resId = BGIMAGES[index];
+		currentBgIndex = index;
+
+		return resId;
+	}
+
 	private void refreshHappyMoment() {
 		if (!happyMoments.isEmpty()) {
 			HappyMoment happyMoment = getAnotherHappyMoment();
@@ -181,7 +194,7 @@ public class MainActivity extends Activity {
 			refreshHappyMomentButton.setVisibility(View.GONE);
 		}
 
-		int resId = BGIMAGES[random.nextInt(BGIMAGES.length)];
+		int resId = getAnotherBgResource();
 		bgView.setImageResource(resId);
 	}
 
