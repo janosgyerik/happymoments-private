@@ -7,9 +7,10 @@
     <string name="menu_restore">Restore</string>
     <string name="menu_quit">Quit</string>
     <string name="title_activity_main">Happy Moments</string>
-    <string name="title_add_happy_moment">Add Happy Moment :)</string>
+    <string name="title_add_happy_moment">How do you feel?</string>
+    <string name="msg_add_happy_moment">How do you feel? What happened?</string>
     
-    <string name="btn_add_happy_moment">Add Happy Moment</string>
+    <string name="btn_add_happy_moment">Add Happy Moment :)</string>
     <string name="btn_cancel">Cancel</string>
     <string name="btn_yes">Yes</string>
     

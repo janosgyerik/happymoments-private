@@ -6,7 +6,6 @@ version 1.0
 
 minor things
 ------------
-- when refreshing, make sure to reroll a different bg and happy moment
 - add left-right arrows to happy moment
     - no right-arrow on last happy moment
 - add about page
