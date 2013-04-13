@@ -42,6 +42,14 @@ release target: add settings page
         - use after restoring db
 
 
+release target: translate to French
+-----------------------------------
+- move all English texts to xml
+- translate app to French
+- confirm it works
+- translate app page to French
+
+
 later
 -----
 - gallery view: happy moments by photo

@@ -44,6 +44,14 @@ public class AddHappyMomentActivity extends Activity {
 				finish();
 			}
 		});
+		
+		Button btnAddPhoto = (Button) findViewById(R.id.btn_add_photo);
+		btnAddPhoto.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(AddHappyMomentActivity.this, "Coming soon...", Toast.LENGTH_LONG).show();
+			}
+		});
 	}
 
 	static String capitalize(String name) {

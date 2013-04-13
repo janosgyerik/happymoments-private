@@ -66,6 +66,18 @@ $(mdpi_dir)/btn_%.png: $(src_dir)/btn_%.png
 	mogrify -geometry 96x -channel Alpha -evaluate Divide 2 $@
 	identify $@
 
+$(hdpi_dir)/xbtn_%.png: $(src_dir)/xbtn_%.png
+	convert -geometry 48x $< $@
+	identify $@
+
+$(ldpi_dir)/xbtn_%.png: $(src_dir)/xbtn_%.png
+	convert -geometry 36x $< $@
+	identify $@
+
+$(mdpi_dir)/xbtn_%.png: $(src_dir)/xbtn_%.png
+	convert -geometry 36x $< $@
+	identify $@
+
 $(hdpi_dir)/headerbtn_%.png: $(src_dir)/headerbtn_%.png
 	convert -geometry 36x $< $@
 	identify $@
