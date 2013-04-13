@@ -2,6 +2,8 @@ version 1.0
 -----------
 - pretty launcher icon
 - replace all images to prevent licence issues
+    http://pixabay.com/en/photos/?q=beach
+    http://www.iconfinder.com/
 
 
 minor things
