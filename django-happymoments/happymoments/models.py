@@ -19,4 +19,15 @@ class HappyMoment(models.Model):
         return self.text
 
 
+class HappyMomentPhoto(models.Model):
+    happy_moment = models.ForeignKey(HappyMoment)
+    filename = models.CharField(max_length=50)
+    display_order = models.IntegerField()
+    created_dt = models.DateTimeField(default=datetime.now)
+    updated_dt = models.DateTimeField(default=datetime.now)
+
+    class Meta:
+        unique_together = (('happy_moment', 'filename',))
+
+
 # eof
