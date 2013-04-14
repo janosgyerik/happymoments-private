@@ -38,8 +38,7 @@ public class HappyMomentsSQLiteOpenHelper extends SQLiteOpenHelper {
 
 		sqlCreateStatements = getSqlStatements(context, "sql_create.sql");
 		sqlUpgradeStatements = new SparseArray<List<String>>();
-		// sqlUpgradeStatements.put(2, getSqlStatements(context,
-		// "sql_upgrade2.sql"));
+//		sqlUpgradeStatements.put(2, getSqlStatements(context, "sql_upgrade2.sql"));
 	}
 
 	private List<String> getSqlStatements(Context context, String assetName) {
@@ -86,7 +85,7 @@ public class HappyMomentsSQLiteOpenHelper extends SQLiteOpenHelper {
 		}
 	}
 
-	private void upgradeToVersion(SQLiteDatabase db, int version) {
+	protected void upgradeToVersion(SQLiteDatabase db, int version) {
 		Log.d(TAG, "upgrade to version " + version);
 		for (String sql : sqlUpgradeStatements.get(version)) {
 			db.execSQL(sql);

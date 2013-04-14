@@ -7,3 +7,5 @@ tmp
 /happymoments-lite/local.properties
 /happymoments-lite/keys/
 /happymoments/local.properties
+/happymoments-tests/.settings
+/happymoments-tests/target
