@@ -24,7 +24,7 @@ public class HappyMomentsSQLiteOpenHelper extends SQLiteOpenHelper {
 			.getSimpleName();
 
 	private static final String DATABASE_NAME = "sqlite3.db";
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 
 	private static final String HAPPYMOMENTS_TABLE_NAME = "happymoments_happymoment";
 
@@ -38,7 +38,7 @@ public class HappyMomentsSQLiteOpenHelper extends SQLiteOpenHelper {
 
 		sqlCreateStatements = getSqlStatements(context, "sql_create.sql");
 		sqlUpgradeStatements = new SparseArray<List<String>>();
-//		sqlUpgradeStatements.put(2, getSqlStatements(context, "sql_upgrade2.sql"));
+		sqlUpgradeStatements.put(2, getSqlStatements(context, "sql_upgrade2.sql"));
 	}
 
 	private List<String> getSqlStatements(Context context, String assetName) {

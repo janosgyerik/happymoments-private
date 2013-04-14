@@ -20,6 +20,7 @@ release target: taking pictures
     + take picture
     - allow canceling pic
         - replace "Take a photo" with "Cancel photo"
+    + upgrade database to accommodate photos
     - save pic filename in database
     - save happy moment with default text if there is pic but no text
     - clean up pic on cancel
