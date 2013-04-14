@@ -15,11 +15,31 @@ minor things
 
 
 release target: taking pictures
------------------------------
-- taking pictures
-    - take picture, save picture
-    - show picture of happy moment whenever available
-    - add picture to list view
+-------------------------------
+- on add happy moment screen:
+    + take picture
+    - allow canceling pic
+        - replace "Take a photo" with "Cancel photo"
+    - save pic filename in database
+    - save happy moment with default text if there is pic but no text
+    - clean up pic on cancel
+- on main screen:
+    - show picture of happy moment when available, otherwise random
+
+
+release target: taking pictures improved
+----------------------------------------
+- improve add happy moment screen:
+    - show tiny picture below happy moment
+    - allow taking multiple pictures
+        - keep in mind the issue on HT03: occasional "quiet" crashes
+    - click on picture to pop-up in big
+    - long click on picture to delete, with confirmation
+- improve main screen:
+    - show first pic if there are multiple
+    - add button to rotate pics
+- improve list screen:
+    - add tiny pics
 
 
 release target: recording location

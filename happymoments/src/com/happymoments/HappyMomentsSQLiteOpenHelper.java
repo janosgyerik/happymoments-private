@@ -153,4 +153,19 @@ public class HappyMomentsSQLiteOpenHelper extends SQLiteOpenHelper {
 		return true;
 	}
 
+	public boolean isExistingHappyMomentId(String happyMomentId) {
+		Log.d(TAG, "isExistingHappyMomentId " + happyMomentId);
+		boolean exists = false;
+		Cursor cursor = getReadableDatabase().query(
+				HAPPYMOMENTS_TABLE_NAME, new String[]{ "name", }, 
+				BaseColumns._ID + " = ?", new String[]{ happyMomentId },
+				null, null, null);
+		if (cursor.moveToNext()) {
+			exists = true;
+		}
+		cursor.close();
+		Log.d(TAG, "isExistingHappyMomentId " + happyMomentId + " -> " + exists);
+		return exists;
+	}
+
 }

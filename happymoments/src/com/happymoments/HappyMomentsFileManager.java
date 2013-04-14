@@ -120,6 +120,10 @@ public class HappyMomentsFileManager {
 		return File.createTempFile(String.format("happymoment_%s_", happyMomentId),
 				".jpg", PHOTOS_DIR);
 	}
+	
+	public static File newPhotoFile() throws IOException {
+		return newPhotoFile("tmp");
+	}
 
 	/**
 	 * Update daily database backup, only once a day.
@@ -170,6 +174,11 @@ public class HappyMomentsFileManager {
 			}
 		}
 		return null;
+	}
+
+	public static Bitmap getPhotoBitmap(String photoFilename) {
+		File srcFile = getPhotoFile(photoFilename);
+		return BitmapFactory.decodeFile(srcFile.getAbsolutePath());
 	}
 
 	public static Bitmap getMediumPhotoBitmap(String photoFilename, int appWidth) {

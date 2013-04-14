@@ -14,6 +14,7 @@
     <string name="btn_add_photo">Take a photo</string>
     <string name="btn_cancel">Cancel</string>
     <string name="btn_yes">Yes</string>
+    <string name="btn_ok">OK</string>
     
     <string name="msg_quit">Are you sure you want to quit?</string>
     
@@ -39,5 +40,10 @@
     <string name="title_delete_happymoment">Delete Happy Moment</string>
     <string name="msg_happymoment_deleted">Deleted Happy Moment</string>
     
+    <string name="title_unexpected_error">Unexpected Error</string>
+    <string name="error_allocating_photo_file">There was an error
+        when trying to allocate a file to store the photo.
+        We don\'t know how this is possible.
+        Unfortunately you cannot take photos :(</string>
 
 </resources>

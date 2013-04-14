@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.provider.BaseColumns;
@@ -315,6 +316,29 @@ public class MainActivity extends Activity {
 				}
 				break;
 			}
+		}
+	}
+
+	// TODO
+	protected void addPhotoToLayout(String photoFilename) {
+		Bitmap bitmap = HappyMomentsFileManager.getPhotoBitmap(photoFilename);
+		if (bitmap != null) {
+			ImageView photoView = new ImageView(this);
+			photoView.setImageBitmap(bitmap);
+			// TODO set as bgckground
+
+			// dirty hack for motorola
+			// TODO can we delete this?
+//			int targetHeight = appWidth * bitmap.getHeight() / bitmap.getWidth();
+//			LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+//			photoView.setLayoutParams(params);
+//			photoView.getLayoutParams().height = targetHeight;
+//
+//			LinearLayout layout = (LinearLayout) findViewById(R.id.photos);
+//			layout.addView(photoView);
+		}
+		else {
+			// TODO use random background
 		}
 	}
 
