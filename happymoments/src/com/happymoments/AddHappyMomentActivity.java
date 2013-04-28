@@ -27,6 +27,7 @@ public class AddHappyMomentActivity extends Activity {
 	private HappyMomentsSQLiteOpenHelper helper;
 
 	private File photoFile;
+	private Button btnAddPhoto;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -57,13 +58,20 @@ public class AddHappyMomentActivity extends Activity {
 			}
 		});
 
-		Button btnAddPhoto = (Button) findViewById(R.id.btn_add_photo);
-		btnAddPhoto.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
+		btnAddPhoto = (Button) findViewById(R.id.btn_add_photo);
+		btnAddPhoto.setOnClickListener(new AddPhotoButtonOnClickListener());
+	}
+
+	class AddPhotoButtonOnClickListener implements OnClickListener {
+		@Override
+		public void onClick(View v) {
+			if (photoFile == null) {
 				dispatchTakePictureIntent();
 			}
-		});
+			else {
+				cancelPhoto();
+			}
+		}
 	}
 
 	static String capitalize(String name) {
@@ -116,20 +124,32 @@ public class AddHappyMomentActivity extends Activity {
 			switch (requestCode) {
 			case RETURN_FROM_ADD_PHOTO:
 				Log.i(TAG, "CANCEL add photo");
-				if (photoFile != null && photoFile.isFile()) {
-					photoFile.delete();
-				}
+				cancelPhoto();
 				break;
 			default:
 				Log.i(TAG, "CANCEL ???");
 			}
 		}
 	}
+	
+	private boolean photoExists() {
+		return photoFile != null && photoFile.isFile();
+	}
+
+	private void cancelPhoto() {
+		if (photoExists()) {
+			Log.i(TAG, "deleting photo file " + photoFile);
+			photoFile.delete();
+			photoFile = null;
+		}
+		btnAddPhoto.setText(getString(R.string.btn_add_photo));
+	}
 
 	private void handleSmallCameraPhoto(Intent intent) {
-		if (photoFile != null && photoFile.isFile()) {
+		if (photoExists()) {
 			// TODO save in database
-			Log.d(TAG, "successfully saved photo: " + photoFile);
+			Log.i(TAG, "successfully saved photo: " + photoFile);
+			btnAddPhoto.setText(getString(R.string.btn_cancel_photo));
 		}
 		else {
 			Log.e(TAG, "Something's wrong with the photo file: " + photoFile);

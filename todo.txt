@@ -8,10 +8,12 @@ version 1.0
 
 minor things
 ------------
+- make the tool buttons bigger
 - add left-right arrows to happy moment
     - no right-arrow on last happy moment
 - add about page
 - add a way to edit happy moments
+- swipe left-right to browse happy moments
 
 
 release target: taking pictures
@@ -19,11 +21,12 @@ release target: taking pictures
 - on add happy moment screen:
     + take picture
     - allow canceling pic
-        - replace "Take a photo" with "Cancel photo"
+        + replace "Take a photo" with "Cancel photo"
+        - clean up pic on cancel
+        - change icon to trash
     + upgrade database to accommodate photos
     - save pic filename in database
     - save happy moment with default text if there is pic but no text
-    - clean up pic on cancel
 - on main screen:
     - show picture of happy moment when available, otherwise random
 

@@ -12,6 +12,7 @@
     
     <string name="btn_add_happy_moment">Add Happy Moment :)</string>
     <string name="btn_add_photo">Take a photo</string>
+    <string name="btn_cancel_photo">Cancel photo</string>
     <string name="btn_cancel">Cancel</string>
     <string name="btn_yes">Yes</string>
     <string name="btn_ok">OK</string>
