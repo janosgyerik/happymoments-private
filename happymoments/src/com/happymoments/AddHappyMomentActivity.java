@@ -131,7 +131,7 @@ public class AddHappyMomentActivity extends Activity {
 			}
 		}
 	}
-	
+
 	private boolean photoExists() {
 		return photoFile != null && photoFile.isFile();
 	}
@@ -143,6 +143,7 @@ public class AddHappyMomentActivity extends Activity {
 			photoFile = null;
 		}
 		btnAddPhoto.setText(getString(R.string.btn_add_photo));
+		btnAddPhoto.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.xbtn_add_photo, 0);
 	}
 
 	private void handleSmallCameraPhoto(Intent intent) {
@@ -150,6 +151,7 @@ public class AddHappyMomentActivity extends Activity {
 			// TODO save in database
 			Log.i(TAG, "successfully saved photo: " + photoFile);
 			btnAddPhoto.setText(getString(R.string.btn_cancel_photo));
+			btnAddPhoto.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.xbtn_delete, 0);
 		}
 		else {
 			Log.e(TAG, "Something's wrong with the photo file: " + photoFile);
