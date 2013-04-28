@@ -21,10 +21,10 @@ release target: taking pictures
 -------------------------------
 - on add happy moment screen:
     + take picture
-    - allow canceling pic
+    + allow canceling pic
         + replace "Take a photo" with "Cancel photo"
-        - clean up pic on cancel
         + change icon to trash
+    + clean up pic on cancel
     + upgrade database to accommodate photos
     - save pic filename in database
     - save happy moment with default text if there is pic but no text

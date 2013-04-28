@@ -136,12 +136,16 @@ public class AddHappyMomentActivity extends Activity {
 		return photoFile != null && photoFile.isFile();
 	}
 
-	private void cancelPhoto() {
+	private void cleanupPhoto() {
 		if (photoExists()) {
 			Log.i(TAG, "deleting photo file " + photoFile);
 			photoFile.delete();
 			photoFile = null;
 		}
+	}
+	
+	private void cancelPhoto() {
+		cleanupPhoto();
 		btnAddPhoto.setText(getString(R.string.btn_add_photo));
 		btnAddPhoto.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.xbtn_add_photo, 0);
 	}
@@ -149,6 +153,7 @@ public class AddHappyMomentActivity extends Activity {
 	private void handleSmallCameraPhoto(Intent intent) {
 		if (photoExists()) {
 			// TODO save in database
+			// TODO rename from tmp location
 			Log.i(TAG, "successfully saved photo: " + photoFile);
 			btnAddPhoto.setText(getString(R.string.btn_cancel_photo));
 			btnAddPhoto.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.xbtn_delete, 0);
@@ -163,6 +168,7 @@ public class AddHappyMomentActivity extends Activity {
 		Log.d(TAG, "++onDestroy");
 		super.onDestroy();
 		helper.close();
+		cleanupPhoto();
 	}
 
 }
