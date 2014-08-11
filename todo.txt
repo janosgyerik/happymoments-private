@@ -9,12 +9,8 @@ version 1.0
 minor things
 ------------
 - make the tool buttons bigger
-- make menu items light background or change icons according to android design guidelines
-- add left-right arrows to happy moment
-    - no right-arrow on last happy moment
 - add about page
 - add a way to edit happy moments
-- swipe left-right to browse happy moments
 
 
 release target: taking pictures
@@ -75,8 +71,9 @@ release target: translate to French
 - translate app page to French
 
 
-later
------
+other features
+--------------
+- swipe left-right to browse happy moments
 - gallery view: happy moments by photo
 
 
